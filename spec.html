@@ -159,6 +159,93 @@
     /* ---- Discount tag ---- */
     .disc { color: var(--success); font-weight: 600; }
 
+    /* ---- Mockup ---- */
+    .mockup {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .mwf-app-header {
+      background: #0a0a18;
+      border-bottom: 2px solid var(--primary);
+      padding: 0.6rem 1rem;
+      text-align: center;
+    }
+    .mwf-app-title { color: var(--accent); font-size: 1rem; font-weight: 800; }
+    .mwf-app-sub   { color: var(--text-muted); font-size: 0.72rem; }
+    .mwf-form-section { border-bottom: 1px solid var(--border); padding: 0.65rem 1rem; }
+    .mwf-label {
+      display: flex; align-items: center; gap: 0.4rem;
+      color: var(--text-muted); font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      font-weight: 600; margin-bottom: 0.45rem;
+    }
+    .mwf-n {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 16px; height: 16px; background: var(--primary); color: #fff;
+      border-radius: 50%; font-size: 0.65rem; font-weight: 700; flex-shrink: 0;
+    }
+    .mwf-opt-label { font-weight: 400; text-transform: none; letter-spacing: 0; }
+    .mwf-field {
+      background: var(--bg-input); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.35rem 0.65rem;
+      color: var(--text-muted); font-size: 0.8rem; display: block; width: 100%;
+    }
+    .mwf-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .mwf-chip {
+      background: var(--bg-input); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.3rem 0.6rem;
+      color: var(--text-muted); font-size: 0.78rem;
+    }
+    .mwf-2col { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.7rem; }
+    .mwf-sublabel { color: var(--text-muted); font-size: 0.75rem; margin-bottom: 0.25rem; }
+    .mwf-promo { display: flex; gap: 0.4rem; }
+    .mwf-promo .mwf-field { flex: 1; }
+    .mwf-apply {
+      background: var(--primary); color: #fff; border-radius: 6px;
+      padding: 0.35rem 0.8rem; font-size: 0.78rem; white-space: nowrap;
+    }
+    .mwf-err-hint { color: #ef4444; font-size: 0.72rem; font-style: italic; margin-top: 0.3rem; }
+    .mwf-ok-hint  { color: var(--success); font-size: 0.72rem; font-style: italic; }
+    .mwf-actions {
+      display: flex; justify-content: flex-end; gap: 0.5rem;
+      padding: 0.65rem 1rem; background: rgba(0,0,0,0.18);
+    }
+    .mwf-btn {
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 0.35rem 0.7rem; font-size: 0.78rem; color: var(--text-muted);
+    }
+    .mwf-btn.prim {
+      background: var(--primary); border-color: var(--primary);
+      color: #fff; font-weight: 600;
+    }
+    .mwf-result-zone { padding: 0.65rem 1rem; border-top: 2px dashed var(--border); }
+    .mwf-result-note { color: var(--text-muted); font-size: 0.72rem; text-align: center; margin-bottom: 0.5rem; }
+    .mwf-result-pair { display: flex; gap: 0.5rem; }
+    .mwf-res-ok {
+      flex: 1; border: 1px solid rgba(34,197,94,.4); border-radius: 6px;
+      padding: 0.5rem; color: var(--success); font-size: 0.78rem; font-weight: 600;
+    }
+    .mwf-res-or {
+      display: flex; align-items: center; color: var(--text-muted);
+      font-size: 0.78rem; flex-shrink: 0;
+    }
+    .mwf-res-err {
+      flex: 1; border: 1px solid rgba(239,68,68,.4); border-radius: 6px;
+      padding: 0.5rem; color: #ef4444; font-size: 0.78rem; font-weight: 600;
+    }
+    .mwf-sub { display: block; font-weight: 400; font-size: 0.7rem; margin-top: 0.2rem; opacity: 0.85; }
+
+    /* ---- Mensajes sub-headers ---- */
+    .msg-sub {
+      color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.07em; font-weight: 600; margin-top: 1.25rem;
+      margin-bottom: 0.5rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border);
+    }
+
     /* ---- General description ---- */
     .desc-box {
       background: var(--bg-section);
@@ -206,6 +293,103 @@
       y <strong>confirmar la orden</strong> si todos los datos son válidos.
       Ante cualquier error, se debe mostrar un mensaje descriptivo y no procesar la compra.
     </p>
+  </div>
+
+  <!-- Mockup -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Interfaz de la Aplicación (Mockup)</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:0.88rem;color:var(--text-muted);">
+        El formulario tiene 6 secciones. Cada campo muestra su mensaje de error directamente debajo cuando la validación falla.
+        El resultado aparece al final de la página al enviar el formulario.
+      </p>
+      <div class="mockup">
+        <div class="mwf-app-header">
+          <div class="mwf-app-title">StageWave</div>
+          <div class="mwf-app-sub">Tu plataforma de boletos para conciertos</div>
+        </div>
+
+        <div class="mwf-form-section">
+          <div class="mwf-label"><span class="mwf-n">1</span> Evento</div>
+          <div class="mwf-field">&#9660;&nbsp; -- Selecciona un evento --</div>
+          <div class="mwf-err-hint">&#9650; mensaje de error del campo</div>
+        </div>
+
+        <div class="mwf-form-section">
+          <div class="mwf-label"><span class="mwf-n">2</span> Zona</div>
+          <div class="mwf-chips">
+            <span class="mwf-chip">General &middot; $800</span>
+            <span class="mwf-chip">Preferente &middot; $1,500</span>
+            <span class="mwf-chip">VIP &middot; $2,500</span>
+          </div>
+          <div class="mwf-err-hint">&#9650; mensaje de error del campo</div>
+        </div>
+
+        <div class="mwf-form-section">
+          <div class="mwf-label"><span class="mwf-n">3</span> Cantidad de Boletos</div>
+          <div class="mwf-field" style="max-width:140px;">[ número ]</div>
+          <div class="mwf-err-hint">&#9650; mensaje de error del campo</div>
+        </div>
+
+        <div class="mwf-form-section">
+          <div class="mwf-label"><span class="mwf-n">4</span> Datos del Comprador</div>
+          <div class="mwf-2col">
+            <div>
+              <div class="mwf-sublabel">Edad</div>
+              <div class="mwf-field">[ número ]</div>
+              <div class="mwf-err-hint">&#9650; error</div>
+            </div>
+            <div>
+              <div class="mwf-sublabel">Tipo de comprador</div>
+              <div class="mwf-field">&#9660;&nbsp; -- Selecciona tipo --</div>
+              <div class="mwf-err-hint">&#9650; error</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mwf-form-section">
+          <div class="mwf-label"><span class="mwf-n">5</span> Método de Pago</div>
+          <div class="mwf-chips">
+            <span class="mwf-chip">Tarjeta Crédito</span>
+            <span class="mwf-chip">Tarjeta Débito</span>
+            <span class="mwf-chip">PayPal</span>
+            <span class="mwf-chip">Transferencia</span>
+          </div>
+          <div class="mwf-err-hint">&#9650; mensaje de error del campo</div>
+        </div>
+
+        <div class="mwf-form-section">
+          <div class="mwf-label"><span class="mwf-n">6</span> Código Promocional <span class="mwf-opt-label">(opcional)</span></div>
+          <div class="mwf-promo">
+            <div class="mwf-field">[ texto ]</div>
+            <div class="mwf-apply">Aplicar</div>
+          </div>
+          <div class="mwf-err-hint">&#9650; error &nbsp;&nbsp; <span class="mwf-ok-hint">&#10003; código válido</span></div>
+        </div>
+
+        <div class="mwf-actions">
+          <div class="mwf-btn">Limpiar</div>
+          <div class="mwf-btn prim">Calcular y Confirmar</div>
+        </div>
+
+        <div class="mwf-result-zone">
+          <div class="mwf-result-note">&#8595; Resultado (aparece al presionar "Calcular y Confirmar")</div>
+          <div class="mwf-result-pair">
+            <div class="mwf-res-ok">
+              &#10003; Orden Confirmada
+              <span class="mwf-sub">Resumen de la compra + número de confirmación SW-XXXXXXXX</span>
+            </div>
+            <div class="mwf-res-or">&nbsp;ó&nbsp;</div>
+            <div class="mwf-res-err">
+              &#10007; No se pudo completar la orden
+              <span class="mwf-sub">Lista de mensajes de error encontrados</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 1. Evento -->
@@ -417,6 +601,143 @@
         <li>El resumen debe mostrar: evento, fecha, zona, cantidad, tipo de comprador, método de pago, subtotal, descuentos aplicados y total final.</li>
         <li>Si existe algún error, el sistema debe mostrar mensajes claros para cada campo incorrecto y <strong>no</strong> procesar la compra.</li>
       </ul>
+    </div>
+  </div>
+
+  <!-- 10. Mensajes del sistema -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">10</span>
+      <span class="card-title">Mensajes del Sistema</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:0.88rem;color:var(--text-muted);">
+        Referencia de todos los mensajes que el sistema debe mostrar.
+        Los valores entre <code>{llaves}</code> se reemplazan por el dato real en tiempo de ejecución.
+      </p>
+
+      <div class="msg-sub">Al enviar el formulario — validación de campos</div>
+      <table>
+        <thead>
+          <tr><th>Campo</th><th>Condición</th><th>Mensaje exacto del sistema</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Evento</strong></td>
+            <td>No seleccionado</td>
+            <td><code>Debes seleccionar un evento.</code></td>
+          </tr>
+          <tr>
+            <td><strong>Zona</strong></td>
+            <td>No seleccionada</td>
+            <td><code>Debes seleccionar una zona.</code></td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>Cantidad</strong></td>
+            <td>Campo vacío</td>
+            <td><code>Ingresa la cantidad de boletos.</code></td>
+          </tr>
+          <tr>
+            <td>Valor menor a 1</td>
+            <td><code>Cantidad inválida: {n}. El mínimo es 1 boleto.</code></td>
+          </tr>
+          <tr>
+            <td>Valor mayor a 6</td>
+            <td><code>Cantidad inválida: {n}. El máximo es 6 boletos por compra.</code></td>
+          </tr>
+          <tr>
+            <td rowspan="4"><strong>Edad</strong></td>
+            <td>Campo vacío</td>
+            <td><code>Ingresa tu edad.</code></td>
+          </tr>
+          <tr>
+            <td>Menor a la edad mínima del evento</td>
+            <td><code>{evento} requiere edad mínima de {n} años (tu edad: {m}).</code></td>
+          </tr>
+          <tr>
+            <td>Menor de 18 años y zona distinta de General</td>
+            <td><code>Los menores de 18 años solo pueden comprar boletos en zona General (tu zona: {zona}).</code></td>
+          </tr>
+          <tr>
+            <td>Zona VIP y edad menor de 21 años</td>
+            <td><code>La zona VIP requiere edad mínima de 21 años (tu edad: {n}).</code></td>
+          </tr>
+          <tr>
+            <td><strong>Tipo de comprador</strong></td>
+            <td>No seleccionado</td>
+            <td><code>Selecciona el tipo de comprador.</code></td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>Método de pago</strong></td>
+            <td>No seleccionado</td>
+            <td><code>Selecciona un método de pago.</code></td>
+          </tr>
+          <tr>
+            <td>PayPal y cantidad mayor a 4</td>
+            <td><code>PayPal permite máximo 4 boletos por compra (seleccionaste {n}).</code></td>
+          </tr>
+          <tr>
+            <td>Transferencia y zona VIP</td>
+            <td><code>Transferencia bancaria no está disponible para zona VIP.</code></td>
+          </tr>
+          <tr>
+            <td><strong>Zona</strong> (con código promo activo)</td>
+            <td>Zona no compatible con el código aplicado</td>
+            <td><code>El código "{código}" solo aplica en zona: {zonas}. Cambia la zona o retira el código.</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="msg-sub">Al presionar "Aplicar" — código promocional</div>
+      <table>
+        <thead>
+          <tr><th>Condición</th><th>Tipo</th><th>Mensaje exacto del sistema</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Campo de código vacío</td>
+            <td style="color:#ef4444;font-weight:600;">Error</td>
+            <td><code>Ingresa un código para aplicar.</code></td>
+          </tr>
+          <tr>
+            <td>Código no reconocido</td>
+            <td style="color:#ef4444;font-weight:600;">Error</td>
+            <td><code>El código "{código}" no es válido.</code></td>
+          </tr>
+          <tr>
+            <td>Código expirado</td>
+            <td style="color:#ef4444;font-weight:600;">Error</td>
+            <td><code>El código "{código}" ha expirado y no puede aplicarse.</code></td>
+          </tr>
+          <tr>
+            <td>Código válido y activo</td>
+            <td style="color:var(--success);font-weight:600;">&#10003; Éxito</td>
+            <td><code>&#10003; Código válido: {n}% adicional en zona {zonas}.</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="msg-sub">Resultado final — sección inferior de la página</div>
+      <table>
+        <thead>
+          <tr><th>Escenario</th><th>Encabezado mostrado</th><th>Contenido</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Uno o más campos inválidos</td>
+            <td style="color:#ef4444;font-weight:600;">&#10007; No se pudo completar la orden</td>
+            <td>Lista con todos los mensajes de error de validación.</td>
+          </tr>
+          <tr>
+            <td>Todos los datos válidos</td>
+            <td style="color:var(--success);font-weight:600;">&#10003; Orden Confirmada</td>
+            <td>
+              Resumen: evento, fecha, zona, cantidad, tipo de comprador, método de pago,
+              subtotal, descuentos aplicados, total a pagar y número de confirmación en formato <code>SW-XXXXXXXX</code>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
