@@ -3,44 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calidad de Software — ITESO 2026</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0f0f13;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      color: #e0e0e0;
-    }
-    .card {
-      text-align: center;
-      padding: 3rem 2.5rem;
-      background: #1a1a24;
-      border: 1px solid #2a2a3a;
-      border-radius: 16px;
-      max-width: 420px;
-      width: 90%;
-    }
-    .icon { font-size: 3rem; margin-bottom: 1.25rem; }
-    h1 { font-size: 1.4rem; color: #fff; margin-bottom: .75rem; }
-    p  { font-size: .95rem; color: #888; line-height: 1.6; }
-    .footer {
-      margin-top: 2rem;
-      font-size: .8rem;
-      color: #555;
-    }
-  </style>
+  <title>StageWave - Compra de Boletos</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="card">
-    <div class="icon">&#128274;</div>
-    <h1>Acceso no disponible</h1>
-    <p>Esta aplicación estará disponible en la fecha indicada por tu profesor/a.<br>
-       Por favor espera las instrucciones del curso.</p>
-    <div class="footer">Calidad de Software &bull; G. Torres &bull; ITESO &bull; 2026</div>
+
+<header>
+  <div class="header-content">
+    <h1>StageWave</h1>
+    <p>Plataforma de venta de boletos para conciertos</p>
   </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <form id="ticketForm" novalidate>
+
+      <!-- 1. Evento -->
+      <section class="form-section">
+        <h2><span class="step">1</span> Evento</h2>
+        <div class="form-group">
+          <label for="evento">Selecciona el evento *</label>
+          <select id="evento" name="evento">
+            <option value="">-- Selecciona un evento --</option>
+            <option value="RockFest">RockFest &mdash; 15 Jul 2026 (18+)</option>
+            <option value="Jazz Night">Jazz Night &mdash; 20 Ago 2026 (18+)</option>
+            <option value="Pop Live">Pop Live &mdash; 10 Sep 2026 (16+)</option>
+            <option value="Indie Session">Indie Session &mdash; 05 Oct 2026 (18+)</option>
+          </select>
+          <span class="field-error" id="eventoError"></span>
+        </div>
+      </section>
+
+      <!-- 2. Zona -->
+      <section class="form-section">
+        <h2><span class="step">2</span> Zona</h2>
+        <div class="zone-cards">
+          <label class="zone-card">
+            <input type="radio" name="zona" value="General">
+            <div class="zone-info">
+              <span class="zone-name">General</span>
+              <span class="zone-price">$800</span>
+              <span class="zone-desc">Acceso estándar</span>
+            </div>
+          </label>
+          <label class="zone-card">
+            <input type="radio" name="zona" value="Preferente">
+            <div class="zone-info">
+              <span class="zone-name">Preferente</span>
+              <span class="zone-price">$1,500</span>
+              <span class="zone-desc">Área preferencial</span>
+            </div>
+          </label>
+          <label class="zone-card">
+            <input type="radio" name="zona" value="VIP">
+            <div class="zone-info">
+              <span class="zone-name">VIP</span>
+              <span class="zone-price">$2,500</span>
+              <span class="zone-desc">Experiencia exclusiva (21+)</span>
+            </div>
+          </label>
+        </div>
+        <span class="field-error" id="zonaError"></span>
+      </section>
+
+      <!-- 3. Cantidad -->
+      <section class="form-section">
+        <h2><span class="step">3</span> Cantidad de Boletos</h2>
+        <div class="form-group">
+          <label for="cantidad">Número de boletos (1&ndash;6) *</label>
+          <input type="number" id="cantidad" name="cantidad" placeholder="Ej: 2">
+          <span class="field-error" id="cantidadError"></span>
+        </div>
+      </section>
+
+      <!-- 4. Datos del comprador -->
+      <section class="form-section">
+        <h2><span class="step">4</span> Datos del Comprador</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edad">Edad *</label>
+            <input type="number" id="edad" name="edad" placeholder="Ej: 25">
+            <span class="field-error" id="edadError"></span>
+          </div>
+          <div class="form-group">
+            <label for="tipoComprador">Tipo de comprador *</label>
+            <select id="tipoComprador" name="tipoComprador">
+              <option value="">-- Selecciona tipo --</option>
+              <option value="General">General &mdash; sin descuento</option>
+              <option value="Estudiante">Estudiante &mdash; 10% dto.</option>
+              <option value="Adulto mayor">Adulto mayor &mdash; 15% dto.</option>
+              <option value="Fan Club">Fan Club &mdash; 20% dto.</option>
+            </select>
+            <span class="field-error" id="tipoCompradorError"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Método de pago -->
+      <section class="form-section">
+        <h2><span class="step">5</span> Método de Pago</h2>
+        <div class="payment-options">
+          <label class="payment-card">
+            <input type="radio" name="metodoPago" value="Tarjeta crédito">
+            <span class="payment-label">Tarjeta Crédito</span>
+          </label>
+          <label class="payment-card">
+            <input type="radio" name="metodoPago" value="Tarjeta débito">
+            <span class="payment-label">Tarjeta Débito</span>
+          </label>
+          <label class="payment-card">
+            <input type="radio" name="metodoPago" value="PayPal">
+            <span class="payment-label">PayPal <small>(máx. 4 boletos)</small></span>
+          </label>
+          <label class="payment-card">
+            <input type="radio" name="metodoPago" value="Transferencia">
+            <span class="payment-label">Transferencia <small>(no VIP)</small></span>
+          </label>
+        </div>
+        <span class="field-error" id="metodoPagoError"></span>
+      </section>
+
+      <!-- 6. Código promocional -->
+      <section class="form-section">
+        <h2><span class="step">6</span> Código Promocional <span class="optional">(opcional)</span></h2>
+        <div class="promo-group">
+          <input type="text" id="codigoPromo" name="codigoPromo"
+                 placeholder="Ej: STAGE10" maxlength="20" autocomplete="off">
+          <button type="button" id="btnAplicarPromo">Aplicar</button>
+        </div>
+        <span class="field-error" id="promoError"></span>
+        <span class="field-success" id="promoSuccess"></span>
+      </section>
+
+      <!-- Acciones -->
+      <div class="form-actions">
+        <button type="button" class="btn-reset" id="btnReset">Limpiar</button>
+        <button type="submit" class="btn-submit">Calcular y Confirmar</button>
+      </div>
+
+    </form>
+
+    <!-- Resultado -->
+    <div id="resultSection" class="hidden"></div>
+
+  </div>
+</main>
+
+<footer>
+  <p>App de demostración &mdash; Calidad de Software &bull; G. Torres &bull; ITESO &bull; 2026</p>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>
