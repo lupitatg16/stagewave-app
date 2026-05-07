@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StageWave — Especificación de Requisitos</title>
+  <style>
+    :root {
+      --primary:      #7c3aed;
+      --accent:       #f59e0b;
+      --bg:           #0d0d1a;
+      --bg-card:      #14142a;
+      --bg-section:   #1a1a30;
+      --border:       #2a2a45;
+      --text:         #f0f0f8;
+      --text-muted:   #8888aa;
+      --success:      #22c55e;
+      --info:         #38bdf8;
+      --warn:         #fb923c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ---- Header ---- */
+    header {
+      background: linear-gradient(135deg, #1a0035, var(--bg));
+      border-bottom: 2px solid var(--primary);
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 0.3rem; }
+    header p  { color: var(--text-muted); font-size: 1rem; }
+    .badge {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      margin-top: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---- Layout ---- */
+    .container {
+      max-width: 900px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    /* ---- Cards ---- */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: var(--bg-section);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .card-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px; height: 28px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .card-body {
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    /* ---- Tables ---- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th {
+      background: var(--bg-section);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.6rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 0.6rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(124,58,237,0.05); }
+
+    code {
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.1em 0.45em;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88em;
+      color: var(--info);
+    }
+
+    /* ---- Rule list ---- */
+    .rule-list {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+    }
+    .rule-list li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.92rem;
+    }
+    .rule-list li::before {
+      content: "▸";
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    /* ---- AVL callout ---- */
+    .avl-box {
+      background: rgba(56,189,248,0.07);
+      border: 1px solid rgba(56,189,248,0.3);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+    .avl-box h4 {
+      color: var(--info);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+    }
+    .avl-values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .avl-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.3rem 0.7rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88rem;
+    }
+    .avl-chip.valid   { border-color: var(--success); color: var(--success); }
+    .avl-chip.invalid { border-color: #ef4444; color: #ef4444; }
+    .avl-chip.neutral { border-color: var(--border); color: var(--text-muted); }
+
+    /* ---- Price highlight ---- */
+    .price { color: var(--accent); font-weight: 700; }
+
+    /* ---- Discount tag ---- */
+    .disc { color: var(--success); font-weight: 600; }
+
+    /* ---- General description ---- */
+    .desc-box {
+      background: var(--bg-section);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+    }
+    .desc-box p { font-size: 0.93rem; color: var(--text-muted); }
+    .desc-box p + p { margin-top: 0.6rem; }
+
+    /* ---- Footer ---- */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 580px) {
+      header h1  { font-size: 1.5rem; }
+      .card-body { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>StageWave</h1>
+  <p>Especificación de Requisitos del Sistema</p>
+  <span class="badge">Documento base para diseño de casos de prueba</span>
+</header>
+
+<div class="container">
+
+  <!-- Descripción general -->
+  <div class="desc-box">
+    <p>
+      <strong>StageWave</strong> es una aplicación web que permite comprar boletos para conciertos.
+      El usuario selecciona el evento, la zona, la cantidad de boletos, el tipo de comprador,
+      su edad, el método de pago y, opcionalmente, un código de descuento.
+    </p>
+    <p>
+      El sistema debe <strong>calcular el total</strong>, <strong>validar las reglas de compra</strong>
+      y <strong>confirmar la orden</strong> si todos los datos son válidos.
+      Ante cualquier error, se debe mostrar un mensaje descriptivo y no procesar la compra.
+    </p>
+  </div>
+
+  <!-- 1. Evento -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">1</span>
+      <span class="card-title">Evento</span>
+    </div>
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr><th>Evento</th><th>Fecha</th><th>Edad mínima</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>RockFest</td><td>15 Jul 2026</td><td>18 años</td></tr>
+          <tr><td>Jazz Night</td><td>20 Ago 2026</td><td>18 años</td></tr>
+          <tr><td>Pop Live</td><td>10 Sep 2026</td><td>16 años</td></tr>
+          <tr><td>Indie Session</td><td>05 Oct 2026</td><td>18 años</td></tr>
+        </tbody>
+      </table>
+      <ul class="rule-list">
+        <li>El campo evento es obligatorio; sin selección la orden no puede procesarse.</li>
+        <li>La edad del comprador debe cumplir la edad mínima del evento seleccionado.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. Zona -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">2</span>
+      <span class="card-title">Zona</span>
+    </div>
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr><th>Zona</th><th>Precio por boleto</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>General</td><td><span class="price">$800</span></td></tr>
+          <tr><td>Preferente</td><td><span class="price">$1,500</span></td></tr>
+          <tr><td>VIP</td><td><span class="price">$2,500</span></td></tr>
+        </tbody>
+      </table>
+      <ul class="rule-list">
+        <li>El campo zona es obligatorio.</li>
+        <li>Zona <strong>VIP</strong> requiere edad mínima de <strong>21 años</strong>.</li>
+        <li>Compradores <strong>menores de 18 años</strong> solo pueden adquirir boletos en zona <strong>General</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3. Cantidad -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">3</span>
+      <span class="card-title">Cantidad de Boletos</span>
+    </div>
+    <div class="card-body">
+      <ul class="rule-list">
+        <li>Mínimo: <code>1</code> boleto por compra.</li>
+        <li>Máximo: <code>6</code> boletos por compra.</li>
+        <li>El campo es obligatorio y debe ser un número entero.</li>
+      </ul>
+      <div class="avl-box">
+        <h4>Análisis de Valores Límite — Cantidad</h4>
+        <div class="avl-values">
+          <span class="avl-chip invalid">0 &nbsp;✗</span>
+          <span class="avl-chip valid">1 &nbsp;✓</span>
+          <span class="avl-chip neutral">2 &nbsp;·</span>
+          <span class="avl-chip neutral">5 &nbsp;·</span>
+          <span class="avl-chip valid">6 &nbsp;✓</span>
+          <span class="avl-chip invalid">7 &nbsp;✗</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Edad -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">4</span>
+      <span class="card-title">Edad del Comprador</span>
+    </div>
+    <div class="card-body">
+      <ul class="rule-list">
+        <li>Edad mínima general: <strong>18 años</strong> (salvo eventos que permiten 16+).</li>
+        <li>Menores de 18 años solo pueden comprar zona <strong>General</strong>.</li>
+        <li>Zona VIP requiere edad mínima de <strong>21 años</strong>.</li>
+        <li>El campo es obligatorio.</li>
+      </ul>
+      <div class="avl-box">
+        <h4>Análisis de Valores Límite — Edad (evento con mínimo 18)</h4>
+        <div class="avl-values">
+          <span class="avl-chip invalid">15 ✗</span>
+          <span class="avl-chip invalid">17 ✗</span>
+          <span class="avl-chip valid">18 ✓</span>
+          <span class="avl-chip neutral">19 ·</span>
+        </div>
+        <br>
+        <h4 style="margin-top:0.75rem;">Valores Límite — Edad para zona VIP</h4>
+        <div class="avl-values">
+          <span class="avl-chip invalid">20 ✗</span>
+          <span class="avl-chip valid">21 ✓</span>
+          <span class="avl-chip neutral">22 ·</span>
+        </div>
+        <br>
+        <h4 style="margin-top:0.75rem;">Valores Límite — Edad para evento Pop Live (16+)</h4>
+        <div class="avl-values">
+          <span class="avl-chip invalid">15 ✗</span>
+          <span class="avl-chip valid">16 ✓</span>
+          <span class="avl-chip neutral">17 ·</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Tipo de comprador -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">5</span>
+      <span class="card-title">Tipo de Comprador</span>
+    </div>
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr><th>Tipo</th><th>Descuento</th><th>Se aplica sobre</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>General</td><td>Sin descuento</td><td>—</td></tr>
+          <tr><td>Estudiante</td><td><span class="disc">10%</span></td><td>Subtotal base</td></tr>
+          <tr><td>Adulto mayor</td><td><span class="disc">15%</span></td><td>Subtotal base</td></tr>
+          <tr><td>Fan Club</td><td><span class="disc">20%</span></td><td>Subtotal base</td></tr>
+        </tbody>
+      </table>
+      <ul class="rule-list">
+        <li>El campo es obligatorio.</li>
+        <li>Solo puede aplicarse <strong>un descuento por tipo de comprador</strong> por compra.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 6. Código promocional -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">6</span>
+      <span class="card-title">Código Promocional <span style="font-weight:400;color:var(--text-muted);font-size:0.85rem;">(opcional)</span></span>
+    </div>
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr><th>Código</th><th>Descuento adicional</th><th>Zonas válidas</th><th>Estado</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>STAGE10</code></td>
+            <td><span class="disc">10%</span></td>
+            <td>General, Preferente</td>
+            <td>Activo</td>
+          </tr>
+          <tr>
+            <td><code>VIPONLY</code></td>
+            <td><span class="disc">15%</span></td>
+            <td>VIP</td>
+            <td>Activo</td>
+          </tr>
+          <tr>
+            <td><code>EXPIRED20</code></td>
+            <td>—</td>
+            <td>—</td>
+            <td style="color:#ef4444;">Expirado</td>
+          </tr>
+          <tr>
+            <td><em>Cualquier otro</em></td>
+            <td>—</td>
+            <td>—</td>
+            <td style="color:#ef4444;">Inválido</td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="rule-list">
+        <li>El descuento del código se aplica <strong>sobre el monto ya descontado</strong> por tipo de comprador (descuentos en cascada).</li>
+        <li>Códigos expirados deben ser rechazados con mensaje de error.</li>
+        <li>Códigos no reconocidos deben mostrar error de validación.</li>
+        <li>Un código solo es válido si la zona seleccionada coincide con las zonas permitidas del código.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 7. Método de pago -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">7</span>
+      <span class="card-title">Método de Pago</span>
+    </div>
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr><th>Método</th><th>Restricciones</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tarjeta de crédito</td><td>Permite todas las zonas y cantidades</td></tr>
+          <tr><td>Tarjeta de débito</td><td>Sin restricciones adicionales</td></tr>
+          <tr><td>PayPal</td><td>Máximo <strong>4 boletos</strong> por compra</td></tr>
+          <tr><td>Transferencia</td><td>No permitido para zona <strong>VIP</strong></td></tr>
+        </tbody>
+      </table>
+      <ul class="rule-list">
+        <li>El campo es obligatorio.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 8. Cálculo del total -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">8</span>
+      <span class="card-title">Cálculo del Total</span>
+    </div>
+    <div class="card-body">
+      <ul class="rule-list">
+        <li><strong>Subtotal</strong> = Precio de zona × Cantidad de boletos.</li>
+        <li><strong>Después de descuento por tipo</strong> = Subtotal × (1 − % tipo comprador).</li>
+        <li><strong>Total final</strong> = Monto anterior × (1 − % código promo), si aplica código.</li>
+        <li>Si no hay descuentos, el total es igual al subtotal.</li>
+      </ul>
+      <div class="avl-box">
+        <h4>Ejemplo de cálculo</h4>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-top:0.4rem;">
+          2 boletos · Zona Preferente ($1,500) · Estudiante (10%) · STAGE10 (10%)<br>
+          Subtotal = $3,000 &nbsp;→&nbsp; −10% = $2,700 &nbsp;→&nbsp; −10% = <strong style="color:var(--accent)">$2,430</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Confirmación -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-number">9</span>
+      <span class="card-title">Confirmación de Orden</span>
+    </div>
+    <div class="card-body">
+      <ul class="rule-list">
+        <li>Si todos los datos son válidos, el sistema muestra el resumen completo de la orden y un número de confirmación único.</li>
+        <li>El resumen debe mostrar: evento, fecha, zona, cantidad, tipo de comprador, método de pago, subtotal, descuentos aplicados y total final.</li>
+        <li>Si existe algún error, el sistema debe mostrar mensajes claros para cada campo incorrecto y <strong>no</strong> procesar la compra.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  StageWave &mdash; Especificación v1.0 &bull; Calidad de Software &bull; 2026
+</footer>
+
+</body>
+</html>
