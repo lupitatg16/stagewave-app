@@ -153,40 +153,6 @@
       margin-top: 0.05em;
     }
 
-    /* ---- AVL callout ---- */
-    .avl-box {
-      background: rgba(56,189,248,0.07);
-      border: 1px solid rgba(56,189,248,0.3);
-      border-radius: 10px;
-      padding: 1rem 1.25rem;
-    }
-    .avl-box h4 {
-      color: var(--info);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.6rem;
-    }
-    .avl-values {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .avl-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: var(--bg-section);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.3rem 0.7rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.88rem;
-    }
-    .avl-chip.valid   { border-color: var(--success); color: var(--success); }
-    .avl-chip.invalid { border-color: #ef4444; color: #ef4444; }
-    .avl-chip.neutral { border-color: var(--border); color: var(--text-muted); }
-
     /* ---- Price highlight ---- */
     .price { color: var(--accent); font-weight: 700; }
 
@@ -304,17 +270,6 @@
         <li>Máximo: <code>6</code> boletos por compra.</li>
         <li>El campo es obligatorio y debe ser un número entero.</li>
       </ul>
-      <div class="avl-box">
-        <h4>Análisis de Valores Límite — Cantidad</h4>
-        <div class="avl-values">
-          <span class="avl-chip invalid">0 &nbsp;✗</span>
-          <span class="avl-chip valid">1 &nbsp;✓</span>
-          <span class="avl-chip neutral">2 &nbsp;·</span>
-          <span class="avl-chip neutral">5 &nbsp;·</span>
-          <span class="avl-chip valid">6 &nbsp;✓</span>
-          <span class="avl-chip invalid">7 &nbsp;✗</span>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -331,29 +286,6 @@
         <li>Zona VIP requiere edad mínima de <strong>21 años</strong>.</li>
         <li>El campo es obligatorio.</li>
       </ul>
-      <div class="avl-box">
-        <h4>Análisis de Valores Límite — Edad (evento con mínimo 18)</h4>
-        <div class="avl-values">
-          <span class="avl-chip invalid">15 ✗</span>
-          <span class="avl-chip invalid">17 ✗</span>
-          <span class="avl-chip valid">18 ✓</span>
-          <span class="avl-chip neutral">19 ·</span>
-        </div>
-        <br>
-        <h4 style="margin-top:0.75rem;">Valores Límite — Edad para zona VIP</h4>
-        <div class="avl-values">
-          <span class="avl-chip invalid">20 ✗</span>
-          <span class="avl-chip valid">21 ✓</span>
-          <span class="avl-chip neutral">22 ·</span>
-        </div>
-        <br>
-        <h4 style="margin-top:0.75rem;">Valores Límite — Edad para evento Pop Live (16+)</h4>
-        <div class="avl-values">
-          <span class="avl-chip invalid">15 ✗</span>
-          <span class="avl-chip valid">16 ✓</span>
-          <span class="avl-chip neutral">17 ·</span>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -466,12 +398,9 @@
         <li><strong>Total final</strong> = Monto anterior × (1 − % código promo), si aplica código.</li>
         <li>Si no hay descuentos, el total es igual al subtotal.</li>
       </ul>
-      <div class="avl-box">
-        <h4>Ejemplo de cálculo</h4>
-        <p style="font-size:0.88rem; color:var(--text-muted); margin-top:0.4rem;">
-          2 boletos · Zona Preferente ($1,500) · Estudiante (10%) · STAGE10 (10%)<br>
-          Subtotal = $3,000 &nbsp;→&nbsp; −10% = $2,700 &nbsp;→&nbsp; −10% = <strong style="color:var(--accent)">$2,430</strong>
-        </p>
+      <div class="desc-box">
+        <p><strong>Ejemplo:</strong> 2 boletos · Zona Preferente ($1,500) · Estudiante (10%) · STAGE10 (10%)<br>
+        Subtotal = $3,000 &nbsp;→&nbsp; &minus;10% = $2,700 &nbsp;→&nbsp; &minus;10% = <strong style="color:var(--accent)">$2,430</strong></p>
       </div>
     </div>
   </div>
