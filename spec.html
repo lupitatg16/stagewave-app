@@ -6,17 +6,17 @@
   <title>StageWave — Especificación de Requisitos</title>
   <style>
     :root {
-      --primary:      #7c3aed;
-      --accent:       #f59e0b;
-      --bg:           #0d0d1a;
-      --bg-card:      #14142a;
-      --bg-section:   #1a1a30;
-      --border:       #2a2a45;
-      --text:         #f0f0f8;
-      --text-muted:   #8888aa;
-      --success:      #22c55e;
-      --info:         #38bdf8;
-      --warn:         #fb923c;
+      --primary:      #5b21b6;
+      --accent:       #b45309;
+      --bg:           #f8f9fb;
+      --bg-card:      #ffffff;
+      --bg-section:   #f1f3f8;
+      --border:       #d1d5db;
+      --text:         #1e293b;
+      --text-muted:   #4b5563;
+      --success:      #15803d;
+      --info:         #0369a1;
+      --warn:         #c2410c;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,12 +30,12 @@
 
     /* ---- Header ---- */
     header {
-      background: linear-gradient(135deg, #1a0035, var(--bg));
+      background: linear-gradient(135deg, #ede9fe, #dbeafe);
       border-bottom: 2px solid var(--primary);
       padding: 2rem 1rem;
       text-align: center;
     }
-    header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 0.3rem; }
+    header h1 { font-size: 2rem; color: var(--primary); margin-bottom: 0.3rem; }
     header p  { color: var(--text-muted); font-size: 1rem; }
     .badge {
       display: inline-block;
@@ -64,6 +64,7 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     }
 
     .card-header {
@@ -122,11 +123,11 @@
       vertical-align: top;
     }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: rgba(124,58,237,0.05); }
+    tr:hover td { background: #f5f3ff; }
 
     code {
-      background: var(--bg-section);
-      border: 1px solid var(--border);
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
       border-radius: 4px;
       padding: 0.1em 0.45em;
       font-family: 'Courier New', monospace;
@@ -161,7 +162,7 @@
 
     /* ---- Mockup ---- */
     .mockup {
-      background: var(--bg-card);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
@@ -169,12 +170,12 @@
       margin: 0 auto;
     }
     .mwf-app-header {
-      background: #0a0a18;
+      background: #ede9fe;
       border-bottom: 2px solid var(--primary);
       padding: 0.6rem 1rem;
       text-align: center;
     }
-    .mwf-app-title { color: var(--accent); font-size: 1rem; font-weight: 800; }
+    .mwf-app-title { color: var(--primary); font-size: 1rem; font-weight: 800; }
     .mwf-app-sub   { color: var(--text-muted); font-size: 0.72rem; }
     .mwf-form-section { border-bottom: 1px solid var(--border); padding: 0.65rem 1rem; }
     .mwf-label {
@@ -190,13 +191,13 @@
     }
     .mwf-opt-label { font-weight: 400; text-transform: none; letter-spacing: 0; }
     .mwf-field {
-      background: var(--bg-input); border: 1px solid var(--border);
+      background: #f8fafc; border: 1px solid var(--border);
       border-radius: 6px; padding: 0.35rem 0.65rem;
       color: var(--text-muted); font-size: 0.8rem; display: block; width: 100%;
     }
     .mwf-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
     .mwf-chip {
-      background: var(--bg-input); border: 1px solid var(--border);
+      background: #f1f5f9; border: 1px solid var(--border);
       border-radius: 6px; padding: 0.3rem 0.6rem;
       color: var(--text-muted); font-size: 0.78rem;
     }
@@ -208,11 +209,11 @@
       background: var(--primary); color: #fff; border-radius: 6px;
       padding: 0.35rem 0.8rem; font-size: 0.78rem; white-space: nowrap;
     }
-    .mwf-err-hint { color: #ef4444; font-size: 0.72rem; font-style: italic; margin-top: 0.3rem; }
+    .mwf-err-hint { color: #b91c1c; font-size: 0.72rem; font-style: italic; margin-top: 0.3rem; }
     .mwf-ok-hint  { color: var(--success); font-size: 0.72rem; font-style: italic; }
     .mwf-actions {
       display: flex; justify-content: flex-end; gap: 0.5rem;
-      padding: 0.65rem 1rem; background: rgba(0,0,0,0.18);
+      padding: 0.65rem 1rem; background: #f8f9fb;
     }
     .mwf-btn {
       border: 1px solid var(--border); border-radius: 6px;
@@ -226,16 +227,18 @@
     .mwf-result-note { color: var(--text-muted); font-size: 0.72rem; text-align: center; margin-bottom: 0.5rem; }
     .mwf-result-pair { display: flex; gap: 0.5rem; }
     .mwf-res-ok {
-      flex: 1; border: 1px solid rgba(34,197,94,.4); border-radius: 6px;
+      flex: 1; border: 1px solid #86efac; border-radius: 6px;
       padding: 0.5rem; color: var(--success); font-size: 0.78rem; font-weight: 600;
+      background: #f0fdf4;
     }
     .mwf-res-or {
       display: flex; align-items: center; color: var(--text-muted);
       font-size: 0.78rem; flex-shrink: 0;
     }
     .mwf-res-err {
-      flex: 1; border: 1px solid rgba(239,68,68,.4); border-radius: 6px;
-      padding: 0.5rem; color: #ef4444; font-size: 0.78rem; font-weight: 600;
+      flex: 1; border: 1px solid #fca5a5; border-radius: 6px;
+      padding: 0.5rem; color: #b91c1c; font-size: 0.78rem; font-weight: 600;
+      background: #fef2f2;
     }
     .mwf-sub { display: block; font-weight: 400; font-size: 0.7rem; margin-top: 0.2rem; opacity: 0.85; }
 
@@ -248,7 +251,7 @@
 
     /* ---- General description ---- */
     .desc-box {
-      background: var(--bg-section);
+      background: #f1f5f9;
       border-radius: 10px;
       padding: 1.1rem 1.25rem;
     }
@@ -526,13 +529,13 @@
             <td><code>EXPIRED20</code></td>
             <td>—</td>
             <td>—</td>
-            <td style="color:#ef4444;">Expirado</td>
+            <td style="color:#b91c1c;">Expirado</td>
           </tr>
           <tr>
             <td><em>Cualquier otro</em></td>
             <td>—</td>
             <td>—</td>
-            <td style="color:#ef4444;">Inválido</td>
+            <td style="color:#b91c1c;">Inválido</td>
           </tr>
         </tbody>
       </table>
@@ -696,17 +699,17 @@
         <tbody>
           <tr>
             <td>Campo de código vacío</td>
-            <td style="color:#ef4444;font-weight:600;">Error</td>
+            <td style="color:#b91c1c;font-weight:600;">Error</td>
             <td><code>Ingresa un código para aplicar.</code></td>
           </tr>
           <tr>
             <td>Código no reconocido</td>
-            <td style="color:#ef4444;font-weight:600;">Error</td>
+            <td style="color:#b91c1c;font-weight:600;">Error</td>
             <td><code>El código "{código}" no es válido.</code></td>
           </tr>
           <tr>
             <td>Código expirado</td>
-            <td style="color:#ef4444;font-weight:600;">Error</td>
+            <td style="color:#b91c1c;font-weight:600;">Error</td>
             <td><code>El código "{código}" ha expirado y no puede aplicarse.</code></td>
           </tr>
           <tr>
@@ -725,7 +728,7 @@
         <tbody>
           <tr>
             <td>Uno o más campos inválidos</td>
-            <td style="color:#ef4444;font-weight:600;">&#10007; No se pudo completar la orden</td>
+            <td style="color:#b91c1c;font-weight:600;">&#10007; No se pudo completar la orden</td>
             <td>Lista con todos los mensajes de error de validación.</td>
           </tr>
           <tr>
